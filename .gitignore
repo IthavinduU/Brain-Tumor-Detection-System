@@ -1,0 +1,15 @@
+archive
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.tar
+*.gz
+*.tgz
+*.tar.bz2
+*.tar.xz
+
+# Backup files
+*.bak
+*.tmp
+*.swp
