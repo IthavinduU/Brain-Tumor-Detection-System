@@ -44,15 +44,19 @@ def predict():
             return jsonify({"error": "No selected file"}), 400
         image_bytes = file.read()
         img = preprocess_image(image_bytes)
-        preds = model.predict(img)
+        preds = model.predict(img)  # preds shape: (1, num_classes)
         pred_class_index = np.argmax(preds, axis=1)[0]
         pred_class_label = label_encoder.inverse_transform([pred_class_index])[0]
-        return jsonify({"prediction": pred_class_label})
+        confidence_scores = preds[0].tolist()  # convert to list for JSON serializable
+        return jsonify({
+            "prediction": pred_class_label,
+            "confidence": confidence_scores
+        })
     except Exception as e:
         import traceback
-
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
+
 
 
 if __name__ == "__main__":
