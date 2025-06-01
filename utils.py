@@ -1,6 +1,11 @@
 import numpy as np
 from PIL import Image
 import tensorflow as tf
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from keras.optimizers import Adam
+from keras.callbacks import EarlyStopping
+
 
 IMG_SIZE = (150, 150)
 
